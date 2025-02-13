@@ -2,7 +2,7 @@ name: Deploy to ECR
 on:
  
   push:
-    branches: [githubaction_project]
+    branches: [githubactions_project]
 
 env:
   ECR_REPOSITORY: mykub_demo
@@ -16,7 +16,7 @@ jobs:
     name: Deployment
     runs-on: ubuntu-latest
 
-steps:
+    steps:
 
     - name: Set short git commit SHA
       id: commit
