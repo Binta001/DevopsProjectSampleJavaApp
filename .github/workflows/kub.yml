@@ -66,7 +66,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
         IMAGE_TAG: ${{ steps.commit.outputs.short }}
       with:
-          image-ref: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          image-ref: 271986708276.dkr.ecr.us-east-1.amazonaws.com/mykub_demo:97f6fda
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
