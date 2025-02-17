@@ -59,14 +59,13 @@ jobs:
         IMAGE_TAG: ${{ steps.commit.outputs.short }}
       run: |
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        IMAGE_URI=${{ secrets.AWS_ACCOUNT_ID_NEW }}.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@0.28.0
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
-        IMAGE_TAG: ${{ steps.commit.outputs.short }}
       with:
-          image-ref: ${{ secrets.AWS_ACCOUNT_ID_NEW }}.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+          image-ref: '${{ env.IMAGE_URI }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
