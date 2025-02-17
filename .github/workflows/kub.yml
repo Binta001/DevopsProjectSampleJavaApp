@@ -66,7 +66,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
         IMAGE_TAG: ${{ steps.commit.outputs.short }}
       with:
-          image-ref: ${{ secrety.AWS_ACCOUNT_ID_NEW }}.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+          image-ref: ${{ secrets.AWS_ACCOUNT_ID_NEW }}.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
